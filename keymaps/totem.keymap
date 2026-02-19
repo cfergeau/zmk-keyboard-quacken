@@ -1,0 +1,100 @@
+// Base
+// Left Lower Keys
+#define LLK_BASE &kp LSHIFT
+// Right Lower Keys
+#define RLK_BASE &kp RSHIFT
+
+
+// NumLock
+// Left Lower Keys
+#define LLK_NUMLOCK &trans
+// Right Lower Keys
+#define RLK_NUMLOCK &trans
+
+
+// Symbols
+// Left Lower Keys
+#define LLK_SYMBOLS &trans
+// Right Lower Keys
+#define RLK_SYMBOLS &trans
+
+
+// VimNav
+// Left Lower Keys
+#define LLK_VIMNAV &trans
+// Right Lower Keys
+#define RLK_VIMNAV &trans
+
+
+// NumNav
+// Left Lower Keys
+#define LLK_NUMNAV &trans
+// Right Lower Keys
+#define RLK_NUMNAV &trans
+
+
+// NumRow
+// Left Lower Keys
+#define LLK_NUMROW &trans
+// Right Lower Keys
+#define RLK_NUMROW &trans
+
+
+// Function
+// Left Lower Keys
+#define LLK_FUNCTION &trans
+// Right Lower Keys
+#define RLK_FUNCTION &trans
+
+
+// Azerty Base
+// Left Lower Keys
+#define LLK_AZERTY &kp LSHIFT
+// Right Lower Keys
+#define RLK_AZERTY &kp RSHIFT
+
+
+// DeadKey
+// Left Lower Keys
+#define LLK_DEADKEY &trans
+// Right Lower Keys
+#define RLK_DEADKEY &kp LS(LBKT)
+
+
+// HummingBird Base
+// Left Lower Keys
+#define LLK_HB_BASE &none
+// Right Lower Keys
+#define RLK_HB_BASE &none
+
+
+// HummingBird Symbols
+// Left Lower Keys
+#define LLK_HB_SYMBOLS &trans
+// Right Lower Keys
+#define RLK_HB_SYMBOLS &trans
+
+
+// OneDeadKey
+// Left Lower Keys
+#define LLK_HB_ODK &trans
+// Right Lower Keys
+#define RLK_HB_ODK &trans
+
+
+// Shifted OneDeadKey
+// Left Lower Keys
+#define LLK_HB_SODK &trans
+// Right Lower Keys
+#define RLK_HB_SODK &trans
+
+
+// Extra Symbols
+// Left Lower Keys
+#define LLK_HB_EXTRA_SYMS &trans
+// Right Lower Keys
+#define RLK_HB_EXTRA_SYMS &trans
+
+
+// The #define’s for extra keys must come before including selenium.keymap
+#include "selenium.keymap"

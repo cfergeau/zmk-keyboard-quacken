@@ -1,11 +1,12 @@
 #define DK_LAYER EXTRA_LAYERS_START_INDEX
 
+
 &base_layer {
   display-name = "Base";
   bindings = <
-    &kp TAB    &kp Q  &kp W  &kp E  &kp R  &kp T        &kp Y  &kp U  &kp I     &kp O   &kp P      &kp BACKSPACE
-    &kp ESCAPE HRM_A  HRM_S  HRM_D  HRM_F  &kp G        &kp H  HRM_J  HRM_K     HRM_L   HRM_SEMI   &EZ_SL(DK_LAYER)
-    &kp LSHIFT &kp Z  &kp X  &kp C  &kp V  &kp B        &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH   &kp RSHIFT
+   LTK_AZERTY  &kp Q  &kp W  &kp E  &kp R  &kp T        &kp Y  &kp U  &kp I     &kp O   &kp P     RTK_AZERTY
+   LMK_AZERTY  HRM_A  HRM_S  HRM_D  HRM_F  &kp G        &kp H  HRM_J  HRM_K     HRM_L   HRM_SEMI  RMK_AZERTY
+   LLK_AZERTY  &kp Z  &kp X  &kp C  &kp V  &kp B        &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH  LLK_AZERTY
             LTHUMB_TUCK  LTHUMB_HOME  LTHUMB_REACH    RTHUMB_REACH  RTHUMB_HOME  RTHUMB_TUCK
   >;
 };
@@ -45,9 +46,9 @@
     dead_key_layer {
       display-name = "DeadKey";
       bindings = <
-        &trans    &kp N0  &kp N2  &kp N7  &kp RA(E) &trans     &trans  &kp SQT &trans  &trans  &trans       &trans
-        &trans    &kpc Q  &trans  &kpc E  &kp N6  &kp N8       &trans  &kpc U  &kpc I  &kpc O  &trans       &trans
-        &trans    &trans  &trans  &kp N9  &kp N5  &kp MINUS    &trans  &trans  &trans  &trans  &kp LS(FSLH) &kp LS(LBKT)
+        LTK_DEADKEY  &kp N0  &kp N2  &kp N7  &kp RA(E) &trans     &trans  &kp SQT &trans  &trans  &trans       RTK_DEADKEY
+        LMK_DEADKEY  &kpc Q  &trans  &kpc E  &kp N6  &kp N8       &trans  &kpc U  &kpc I  &kpc O  &trans       RMK_DEADKEY
+        LLK_DEADKEY  &trans  &trans  &kp N9  &kp N5  &kp MINUS    &trans  &trans  &trans  &trans  &kp LS(FSLH) RLK_DEADKEY
                                   &trans  &kp N4  &trans       &trans  &kp N4  &trans
       >;
     };
