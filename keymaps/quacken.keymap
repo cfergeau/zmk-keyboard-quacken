@@ -1,226 +1,183 @@
-// Base
-// Left Top Keys
-#define LTK_BASE
-// Left Middle Keys
-#define LMK_BASE &kp ESCAPE
-// Left Lower Keys
-#define LLK_BASE &kp LSHIFT
-
-// Right Top Keys
-#define RTK_BASE &kp BACKSPACE
-// Right Middle Keys
-#define RMK_BASE &kp ENTER
-// Right Lower Keys
-#define RLK_BASE &kp RSHIFT
+// Selenium keymap for the Quacken: https://github.com/OneDeadKey/selenium
 
 
-// NumLock
-// Left Top Keys
-#define LTK_NUMLOCK &trans
-// Left Middle Keys
-#define LMK_NUMLOCK &trans
-// Left Lower Keys
-#define LLK_NUMLOCK &trans
+/******************************************************************************
+ * Layout-specific actions and symbols.
+******************************************************************************/
 
-// Right Top Keys
-#define RTK_NUMLOCK &trans
-// Right Middle Keys
-#define RMK_NUMLOCK &trans
-// Right Lower Keys
-#define RLK_NUMLOCK &trans
+// Uncomment one of the folowing lines if using a non-QWERTY layout:
 
+// #define KB_LAYOUT_QWERTY_LAFAYETTE
+// #define KB_LAYOUT_AZERTY
+// #define KB_LAYOUT_ERGOL
 
-// Symbols
-// Left Top Keys
-#define LTK_SYMBOLS &trans
-// Left Middle Keys
-#define LMK_SYMBOLS &trans
-// Left Lower Keys
-#define LLK_SYMBOLS &trans
+// Uncomment the folowing line if using a Mac:
 
-// Right Top Keys
-#define RTK_SYMBOLS &trans
-// Right Middle Keys
-#define RMK_SYMBOLS &trans
-// Right Lower Keys
-#define RLK_SYMBOLS &trans
+// #define MACOS
 
 
-// VimNav
-// Left Top Keys
-#define LTK_VIMNAV &trans
-// Left Middle Keys
-#define LMK_VIMNAV &trans
-// Left Lower Keys
-#define LLK_VIMNAV &trans
+/******************************************************************************
+ * Hold-Taps
+******************************************************************************/
 
-// Right Top Keys
-#define RTK_VIMNAV &trans
-// Right Middle Keys
-#define RMK_VIMNAV &trans
-// Right Lower Keys
-#define RLK_VIMNAV &trans
+// Uncomment one of the folowing lines to pick your preferred hold-tap config:
 
+// #define HT_NONE
+// #define HT_THUMB_TAPS
+// #define HT_HOME_ROW_MODS  // (default behavior)
+// #define HT_TWO_THUMB_KEYS
 
-// NumNav
-// Left Top Keys
-#define LTK_NUMNAV &trans
-// Left Middle Keys
-#define LMK_NUMNAV &trans
-// Left Lower Keys
-#define LLK_NUMNAV &trans
+// Timing is key! Keep the default value if unsure.
+// This defines how long (in ms) a hold-tap key with the "tap-preferred" flavor
+// must be held to be considered as a modifier or layer shift. These hold-taps
+// are the ones that may produce text, including the space-bar and home-row-mods.
+// Keep this value high if you struggle wih home-row-mods.
 
-// Right Top Keys
-#define RTK_NUMNAV &trans
-// Right Middle Keys
-#define RMK_NUMNAV &trans
-// Right Lower Keys
-#define RLK_NUMNAV &trans
+// #define TAPPING_TERM 300
 
+// This defines how quickly (in ms) you need to press and release a hold-tap
+// with the "hold-preferred" flavor for it to be considered a tap. These
+// hold-taps include the ones that don’t produce text when tapped.
+// Keep this value low if you press Enter or Escape by mistake too often.
 
-// NumRow
-// Left Top Keys
-#define LTK_NUMROW &trans
-// Left Middle Keys
-#define LMK_NUMROW &trans
-// Left Lower Keys
-#define LLK_NUMROW &trans
+// #define SHORT_TAPPING_TERM 150
 
-// Right Top Keys
-#define RTK_NUMROW &trans
-// Right Middle Keys
-#define RMK_NUMROW &trans
-// Right Lower Keys
-#define RLK_NUMROW &trans
+// When tapping then holding the same tap-hold, if the delay between the two
+// key presses is lower than `QUICK_TAP`, the tap-hold will hold the tap action
+// instead of the hold action. Again, keep the default value if unsure.
 
+// #define QUICK_TAP 200
 
-// Function
-// Left Top Keys
-#define LTK_FUNCTION &trans
-// Left Middle Keys
-#define LMK_FUNCTION &trans
-// Left Lower Keys
-#define LLK_FUNCTION &trans
+// For more information on how hold-taps operate, feel free to read ZMK’s docs:
+// https://zmk.dev/docs/keymaps/behaviors/hold-tap
 
-// Right Top Keys
-#define RTK_FUNCTION &trans
-// Right Middle Keys
-#define RMK_FUNCTION &trans
-// Right Lower Keys
-#define RLK_FUNCTION &trans
+/******************************************************************************
+ * Other Options
+*****************************************************************************/
+
+// Uncomment the following line to plit the num-nav layer in two:
+//  - one layer for vim-style navigation (right) and GUI shortcuts (left)
+//  - one layer for a full number row + easy access to Shift+Number
+//  + Escape under the left thumb (direct access)
+// Highly recommended for Vim users, obviously. :-)
+
+// #define VIM_NAVIGATION
+
+// Uncomment the following line to enable shift as a pinky HRM.
+// Useful for combined shortcuts, but NOT MEANT to type text!
+
+// #define HRM_SHIFT
+
+// Uncomment the following line to swap Space and Backspace.
+// Beware: this increases the typing load of the left thumb.
+
+// #define LEFT_HAND_SPACE
 
 
-// Azerty Base
-// Left Top Keys
-#define LTK_AZERTY &kp TAB
-// Left Middle Keys
-#define LMK_AZERTY &kp ESCAPE
-// Left Lower Keys
-#define LLK_AZERTY &kp LSHIFT
+/******************************************************************************
+ * Keymap
+******************************************************************************/
 
-// Right Top Keys
-#define RTK_AZERTY &kp BACKSPACE
-// Right Middle Keys
-#define RMK_AZERTY &EZ_SL(DK_LAYER)
-// Right Lower Keys
-#define RLK_AZERTY &kp RSHIFT
+#include "aliases.h"      // defines symbols and actions
+#include "hold_taps.dtsi" // defines thumb keys and homerow mods
 
+/ {
+  keymap {
+    compatible = "zmk,keymap";
 
-// DeadKey
-// Left Top Keys
-#define LTK_DEADKEY &trans
-// Left Middle Keys
-#define LMK_DEADKEY &trans
-// Left Lower Keys
-#define LLK_DEADKEY &trans
+    // 0. Base layer -- keep the QWERTY key codes to use your OS keyboard layout
+    //               -- the Space Cadet layer-tap on the right can be replaced by an AltGr/Enter mod-tap
+    //               -- adjust the homerow mods with the #define statements above
+    base_layer: base_layer {
+      display-name = "Base";
+      bindings = <
+        &kp TAB    &kp Q  &kp W  &kp E  &kp R  &kp T        &kp Y  &kp U  &kp I     &kp O   &kp P      &kp BACKSPACE
+        &kp ESCAPE HRM_A  HRM_S  HRM_D  HRM_F  &kp G        &kp H  HRM_J  HRM_K     HRM_L   HRM_SEMI   &kp ENTER
+        &kp LSHIFT &kp Z  &kp X  &kp C  &kp V  &kp B        &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH   &kp RSHIFT
+                LTHUMB_TUCK  LTHUMB_HOME  LTHUMB_REACH    RTHUMB_REACH  RTHUMB_HOME  RTHUMB_TUCK
+      >;
+    };
 
-// Right Top Keys
-#define RTK_DEADKEY &trans
-// Right Middle Keys
-#define RMK_DEADKEY &trans
-// Right Lower Keys
-#define RLK_DEADKEY &kp LS(LBKT)
+    // 1. NumLock layer -- NavNum layer that stays on until deactivated without holding key
+    num_lock_layer: num_lock_layer {
+      display-name = "NumLock";
+      bindings = <
+        &trans  &kp ESC  &kp HOME &kp UP   &kp END   &kp PG_UP    &to BASE_LAYER S_N7  S_N8  S_N9  S_FSLH  &trans
+        &trans  S_EQUAL  &kp LEFT &kp DOWN &kp RIGHT &kp PG_DN    S_MINUS        S_N4  S_N5  S_N6  S_N0    &trans
+        &trans  S_MONEY  S_COLON  S_STAR   S_PLUS    S_PRCNT      S_COMMA        S_N1  S_N2  S_N3  S_DOT   &trans
+                 &trans  &sc NUM_NAV_LAYER BACKSPACE  &kp (TAB)  &trans  &lt NUM_NAV_LAYER LS(SPACE)  &EZ_SL(SYMBOLS_LAYER)
+      >;
+    };
 
+    // 2. Symbols layer -- with Ergol, basically just an AltGr layer with custom thumb keys
+    //                  -- can be redefined for non-AltGr layouts such as QWERTY-ANSI
+    symbols_layer: symbols_layer {
+      display-name = "Symbols";
+      bindings = <
+        &trans  S_CARET S_LT    S_GT    S_DLLR  S_PRCNT       S_AT    S_AMPS  S_STAR  S_SQT   S_GRAVE  &trans
+        &trans  S_LBRC  S_LPAR  S_RPAR  S_RBRC  S_EQUAL       S_BSLH  S_PLUS  S_MINUS S_FSLH  S_DQT    &trans
+        &trans  S_TILDE S_LBKT  S_RBKT  S_UNDER S_HASH        S_PIPE  S_EXCL  S_SEMI  S_COLON S_QMARK  &trans
+                    SYM_NUM_LAYER  &kp SPACE  &kp ENTER     &trans  &kp RALT  &trans
+      >;
+    };
 
-// HummingBird Base
-// Left Top Keys
-#define LTK_HB_BASE &kp Z
-// Left Middle Keys
-#define LMK_HB_BASE &kp Z
-// Left Lower Keys
-#define LLK_HB_BASE &none
+    // 3. VimNav layer -- HJKL arrow cluster on the right hand
+    //                 -- best used along with the NumRow layer
+    //                 -- keyboard shortcuts on the left hand are adjusted to the OS layout (Ergol here)
+    vim_nav_layer: vim_nav_layer {
+      display-name = "VimNav";
+      bindings = <
+        &trans  &kp CAPS X_CLOSE  X_PREV   X_NEXT    &none        &kp HOME &kp PG_DN &kp PG_UP &kp END   &kp DEL &trans
+        &trans  X_ALL    X_SAVE   X_SHTAB  &kp TAB   S_GRAVE      &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &none   &trans
+        &trans  X_UNDO   X_CUT    X_COPY   X_PASTE   X_REDO       &none    &none     &none     &none     &none   &trans
+        &kp CAPSLOCK  &lt FUNCTION_LAYER DEL  &mo NUM_ROW_LAYER   &trans   &mo FUNCTION_LAYER  &EZ_LSK(RALT)
+      >;
+    };
 
-// Right Top Keys
-#define RTK_HB_BASE &kp FSLH
-// Right Middle Keys
-#define RMK_HB_BASE &kp FSLH
-// Right Lower Keys
-#define RLK_HB_BASE &none
+    // 4. NumNav layer -- inverted T arrow cluster on the left hand, numpad on the right hand
+    //                 -- can be the only extra layer you need if you're not too picky with number+symbols n-grams
+    //                 -- keyboard shortcuts on the left hand are adjusted to the OS layout (Ergol here)
+    num_nav_layer: num_nav_layer {
+      display-name = "NumNav";
+      bindings = <
+        &trans  &kp ESC  &kp HOME &kp UP   &kp END   &kp PG_UP    &to NUM_LOCK_LAYER S_N7  S_N8  S_N9  S_FSLH  &trans
+        &trans  X_ALL    &kp LEFT &kp DOWN &kp RIGHT &kp PG_DN    S_MINUS            S_N4  S_N5  S_N6  S_N0    &trans
+        &trans  X_UNDO   X_CUT    X_COPY   X_PASTE   X_REDO       S_COMMA            S_N1  S_N2  S_N3  S_DOT   &trans
+               &kp CAPSLOCK  &sc FUNCTION_LAYER DEL  &kp LS(TAB)  &kp ESCAPE  &lt FUNCTION_LAYER LS(SPACE)  &EZ_LSK(RALT)
+      >;
+    };
 
+    // 5. NumRow layer -- bring the numbers to the homerow, keep shift+numbers for shortcuts and symbols
+    //                 -- space becomes shift+space, which is a no-break space with some OS layouts (e.g. Ergol)
+    //                 -- best used along with the VimNav layer
+    num_row_layer: num_row_layer {
+      display-name = "NumRow";
+      bindings = <
+        &trans  &kp RS(N1) &kp RS(N2) &kp RS(N3) &kp RS(N4) &kp RS(N5)       &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0) &trans
+        &trans  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5           &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &trans
+        &trans  &none      &none      &none      &none      &none            S_MINUS    S_COMMA    S_DOT      S_COLON    S_FSLH     &trans
+                                      &trans  &kp RS(SPACE) &trans           &trans  &kp LS(SPACE) &kp RALT
+      >;
+    };
 
-// HummingBird Symbols
-// Left Top Keys
-#define LTK_HB_SYMBOLS &trans
-// Left Middle Keys
-#define LMK_HB_SYMBOLS &trans
-// Left Lower Keys
-#define LLK_HB_SYMBOLS &trans
+    // 6. Function layer -- F1..12 pad on the left hand, HRM on the right hand (with an additional Shift key)
+    //                   -- reset and bootloader reset on difficult thumb keys
+    //                   -- could be completed with other rare keys
+    function_layer: function_layer {
+      display-name = "Function";
+      bindings = <
+        &trans  &kp F1  &kp F2  &kp F3  &kp F4  &none         &none &kp C_PREV     &kp C_VOL_UP     &kp C_BRI_UP        &kp SLCK           &trans
+        &trans  &kp F5  &kp F6  &kp F7  &kp F8  &none         &none &hrm LALT C_PP &hrm RCTL C_MUTE &hrm RGUI C_AL_LOCK &hrm LSHIFT PSCRN  &trans
+        &trans  &kp F9  &kp F10 &kp F11 &kp F12 &none         &none &kp C_NEXT     &kp C_VOL_DN     &kp C_BRI_DN        &kp INS            &trans
+                                &trans  &trans  &bootloader   &sys_reset  &trans  &studio_unlock
+      >;
+    };
+  };
+};
 
-// Right Top Keys
-#define RTK_HB_SYMBOLS &trans
-// Right Middle Keys
-#define RMK_HB_SYMBOLS &trans
-// Right Lower Keys
-#define RLK_HB_SYMBOLS &trans
-
-
-// OneDeadKey
-// Left Top Keys
-#define LTK_HB_ODK &trans
-// Left Middle Keys
-#define LMK_HB_ODK &trans
-// Left Lower Keys
-#define LLK_HB_ODK &trans
-
-// Right Top Keys
-#define RTK_HB_ODK &trans
-// Right Middle Keys
-#define RMK_HB_ODK &trans
-// Right Lower Keys
-#define RLK_HB_ODK &trans
-
-
-// Shifted OneDeadKey
-// Left Top Keys
-#define LTK_HB_SODK &trans
-// Left Middle Keys
-#define LMK_HB_SODK &trans
-// Left Lower Keys
-#define LLK_HB_SODK &trans
-
-// Right Top Keys
-#define RTK_HB_SODK &trans
-// Right Middle Keys
-#define RMK_HB_SODK &trans
-// Right Lower Keys
-#define RLK_HB_SODK &trans
-
-
-// Extra Symbols
-// Left Top Keys
-#define LTK_HB_EXTRA_SYMS &trans
-// Left Middle Keys
-#define LMK_HB_EXTRA_SYMS &trans
-// Left Lower Keys
-#define LLK_HB_EXTRA_SYMS &trans
-
-// Right Top Keys
-#define RTK_HB_EXTRA_SYMS &trans
-// Right Middle Keys
-#define RMK_HB_EXTRA_SYMS &trans
-// Right Lower Keys
-#define RLK_HB_EXTRA_SYMS &trans
-
-
-// The #define’s for extra keys must come before including selenium.keymap
-#include "selenium.keymap"
+// Some layouts require extra layers to fit on the Quacken.
+#ifdef KB_LAYOUT_AZERTY
+  #include "extra_layers/azerty.dtsi"
+#elif defined KB_LAYOUT_ERGOL && defined HUMMINGBIRD
+  #include "extra_layers/ergol_hummingbird.dtsi"
+#endif
