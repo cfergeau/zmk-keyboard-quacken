@@ -8,7 +8,6 @@ include:
     artifact-name: quacken_test
     snippet: studio-rpc-usb-uart
     cmake-args: >
-      -DKEYMAP_FILE=/__w/zmk-keyboard-quacken/zmk-keyboard-quacken/keymaps/quacken.keymap
       -DCONFIG_ZMK_STUDIO=y
 
   # Quacken Zero + SparkFun RP2040
@@ -17,7 +16,6 @@ include:
     artifact-name: quacken_zero
     snippet: studio-rpc-usb-uart
     cmake-args: >
-      -DKEYMAP_FILE=/__w/zmk-keyboard-quacken/zmk-keyboard-quacken/keymaps/quacken.keymap
       -DCONFIG_ZMK_STUDIO=y
 
   # Quacken Flex
@@ -25,5 +23,4 @@ include:
     artifact-name: quacken_flex
     snippet: studio-rpc-usb-uart
     cmake-args: >
-      -DKEYMAP_FILE=/__w/zmk-keyboard-quacken/zmk-keyboard-quacken/keymaps/quacken.keymap
       -DCONFIG_ZMK_STUDIO=y
