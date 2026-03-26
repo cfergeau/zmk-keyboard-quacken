@@ -1,1 +1,2 @@
+#define KB_LAYOUT_QWERTY_LAFAYETTE
 #include "../zmk-config-selenium/include/selenium/selenium.keymap"

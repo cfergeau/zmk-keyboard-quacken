@@ -1,1 +1,5 @@
+#define KB_LAYOUT_ERGOL
+#define HT_THUMB_TAPS
+#define VIM_NAVIGATION
+#define HRM_SHIFT
 #include "../zmk-config-selenium/include/selenium/selenium.keymap"
